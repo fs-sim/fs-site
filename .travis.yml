@@ -11,8 +11,6 @@ cache:
 script:
   - cp .env.travis .env
   - composer self-update
-
-install:
   - composer install --prefer-dist --no-interaction --dev
   - php artisan key:generate
   - npm install
