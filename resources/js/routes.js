@@ -4,10 +4,10 @@ import Dashboard from './pages/Dashboard'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: Dashboard }
+  { path: '/', component: Dashboard }
 ]
 
 export const router = new VueRouter({
-    mode: 'history',
-    routes
+  mode: 'history',
+  routes
 })

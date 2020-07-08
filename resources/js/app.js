@@ -9,12 +9,10 @@ Vue.use(Buefy)
 Vue.use(axios)
 Vue.use(VueRouter)
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 if (localStorage.getItem('token')) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`
 }
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,8 +20,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// eslint-disable-next-line no-unused-vars
 const app = new Vue({
-    router,
-    el: '#app',
-    ...App
+  router,
+  el: '#app',
+  ...App
 })

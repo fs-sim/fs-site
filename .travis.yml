@@ -8,13 +8,35 @@ cache:
     - node_modules
     - vendor
 
-before_script:
+script:
   - cp .env.travis .env
   - composer self-update
+
+install:
   - composer install --prefer-dist --no-interaction --dev
   - php artisan key:generate
   - npm install
 
-script:
-  - vendor/bin/phpunit
-  - npm run dev
+jobs:
+  include:
+    - stage: "Code Quality"
+      script: npm run lint
+    - stage: "Build"
+      script: npm run production
+    - stage: test
+      name: "API Tests"
+      script: vendor/bin/phpunit
+    - stage: deploy
+      if: branch = master
+      script: echo "Deployed"
+#before_script:
+#  - cp .env.travis .env
+#  - composer self-update
+#  - composer install --prefer-dist --no-interaction --dev
+#  - php artisan key:generate
+#  - npm install
+
+#script:
+#  - vendor/bin/phpunit
+#  - npm run lint
+#  - npm run production
