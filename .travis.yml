@@ -8,14 +8,15 @@ cache:
     - node_modules
     - vendor
 
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --prefer-dist --no-interaction --dev
+  - php artisan key:generate
+  - npm install
+
 jobs:
   include:
-    - stage: "Setup"
-      script: cp .env.travis .env
-    - script: composer self-update
-    - script: composer install --prefer-dist --no-interaction
-    - script: php artisan key:generate
-    - script: npm install
     - stage: "Code Quality"
       script: npm run lint
     - stage: "Build"
@@ -25,12 +26,7 @@ jobs:
     - stage: "Deploy"
       if: branch = master
       script: echo "Deployed"
-#before_script:
-#  - cp .env.travis .env
-#  - composer self-update
-#  - composer install --prefer-dist --no-interaction --dev
-#  - php artisan key:generate
-#  - npm install
+
 
 #script:
 #  - vendor/bin/phpunit
