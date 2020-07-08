@@ -16,6 +16,9 @@ before_script:
   - npm install
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
 #  - npm run lint
   - npm run production
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
