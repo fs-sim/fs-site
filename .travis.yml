@@ -15,20 +15,7 @@ before_script:
   - php artisan key:generate
   - npm install
 
-jobs:
-  include:
-    - stage: "Code Quality"
-      script: npm run lint
-    - stage: "Build"
-      script: npm run production
-    - stage: "Test"
-      script: vendor/bin/phpunit
-    - stage: "Deploy"
-      if: branch = master
-      script: echo "Deployed"
-
-
-#script:
-#  - vendor/bin/phpunit
+script:
+  - vendor/bin/phpunit
 #  - npm run lint
-#  - npm run production
+  - npm run production
